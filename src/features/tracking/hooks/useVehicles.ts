@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import type { Vehicle, TelemetryResponse } from '../types/telemetry.type'
 import { fetchLatestPositions } from '../services/telemetry-api.service'
 
-const WS_URL = 'ws://gps-api.coexca03.es/api/v1/telemetry/ws'
+const WS_URL = import.meta.env.WS_URL
 const MAX_TRAIL = 50
 
 const getStatus = (data: TelemetryResponse): Vehicle['status'] => {
@@ -31,7 +31,6 @@ export const useVehicles = (): Vehicle[] => {
             setVehicles(map)
         })
     }, [])
-    // Añade al useVehicles, dentro del useEffect de carga inicial o en uno nuevo:
 
     // WebSocket para actualizaciones
     useEffect(() => {
@@ -71,7 +70,7 @@ export const useVehicles = (): Vehicle[] => {
 
                 return changed ? next : prev
             })
-        }, 3000)
+        }, 300)
 
         return () => clearInterval(interval)
     }, [])
