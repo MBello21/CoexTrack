@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import type { Vehicle, TelemetryResponse } from '../types/telemetry.type'
 import { fetchLatestPositions } from '../services/telemetry-api.service'
 
-const WS_URL = import.meta.env.WS_URL
+const WS_URL = import.meta.env.VITE_WS_URL
 const MAX_TRAIL = 50
 
 const getStatus = (data: TelemetryResponse): Vehicle['status'] => {
@@ -34,7 +34,11 @@ export const useVehicles = (): Vehicle[] => {
 
     // WebSocket para actualizaciones
     useEffect(() => {
+        let cancelled = false
+
         const connect = () => {
+            if (cancelled) return
+
             const ws = new WebSocket(WS_URL)
             wsRef.current = ws
 
@@ -47,12 +51,20 @@ export const useVehicles = (): Vehicle[] => {
                 })
             }
 
-            ws.onclose = () => setTimeout(connect, 3000)
+            ws.onclose = () => {
+                if (!cancelled) setTimeout(connect, 3000)
+            }
         }
 
         connect()
-        return () => wsRef.current?.close()
+
+        return () => {
+            cancelled = true
+            wsRef.current?.close()
+        }
     }, [])
+
+    // Timeout detector
     useEffect(() => {
         const interval = setInterval(() => {
             setVehicles((prev) => {
@@ -70,7 +82,7 @@ export const useVehicles = (): Vehicle[] => {
 
                 return changed ? next : prev
             })
-        }, 300)
+        }, 5000)
 
         return () => clearInterval(interval)
     }, [])
