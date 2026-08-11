@@ -42,6 +42,16 @@ export const useVehicles = (): Vehicle[] => {
             const ws = new WebSocket(WS_URL)
             wsRef.current = ws
 
+            ws.onopen = () => {
+                const pingInterval = setInterval(() => {
+                    if (ws.readyState === WebSocket.OPEN) {
+                        ws.send('ping')
+                    } else {
+                        clearInterval(pingInterval)
+                    }
+                }, 30000)
+            }
+
             ws.onmessage = (event) => {
                 const data: TelemetryResponse = JSON.parse(event.data)
                 setVehicles((prev) => {
