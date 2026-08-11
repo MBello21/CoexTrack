@@ -49,7 +49,7 @@ export const useVehicles = (): Vehicle[] => {
                     } else {
                         clearInterval(pingInterval)
                     }
-                }, 30000)
+                }, 10000)
             }
 
             ws.onmessage = (event) => {
