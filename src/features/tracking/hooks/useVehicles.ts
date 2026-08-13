@@ -84,7 +84,7 @@ export const useVehicles = (): Vehicle[] => {
 
                 next.forEach((v, id) => {
                     const age = now - new Date(v.timestamp).getTime()
-                    if (age > 15000 && v.status !== 'no_signal') {
+                    if (age > 20000 && v.status !== 'no_signal') {
                         next.set(id, { ...v, status: 'no_signal' })
                         changed = true
                     }
