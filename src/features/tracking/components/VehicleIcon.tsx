@@ -1,24 +1,69 @@
 import L from 'leaflet'
 import type { VehicleStatus } from '../types/telemetry.type'
 
-const STATUS_COLORS: Record<VehicleStatus, string> = {
-    no_signal: '#9CA3AF',  // gris
-    in_transit: '#22C55E', // verde
-    operating: '#F59E0B',  // ámbar
+interface StatusStyle {
+    pin: string
+    stroke: string
+    car: string
+    extra: string // SVG extra elements per status
 }
 
-export const createVehicleIcon = (status: VehicleStatus) => {
-    const color = STATUS_COLORS[status]
+const STATUS_STYLES: Record<VehicleStatus, StatusStyle> = {
+    in_transit: {
+        pin: '#4CAF50',
+        stroke: '#388E3C',
+        car: '#4CAF50',
+        extra: '',
+    },
+    operating: {
+        pin: '#FFC107',
+        stroke: '#F9A825',
+        car: '#FFC107',
+        // Hazard light indicators
+        extra: `
+            <polygon points="15,9 17,13 13,13" fill="#F57F17"/>
+            <polygon points="35,9 37,13 33,13" fill="#F57F17"/>
+        `,
+    },
+    no_signal: {
+        pin: '#9E9E9E',
+        stroke: '#757575',
+        car: '#9E9E9E',
+        extra: '',
+    },
+}
+
+export const createVehicleIcon = (status: VehicleStatus, heading: number = 0) => {
+    const s = STATUS_STYLES[status]
 
     return L.divIcon({
         className: '',
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
+        iconSize: [40, 52],
+        iconAnchor: [20, 52],
         html: `
-      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="14" fill="${color}" stroke="white" stroke-width="2"/>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M480 96C515.3 96 544 124.7 544 160L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 160C96 124.7 124.7 96 160 96L480 96zM264 224C254.3 224 245.5 229.8 241.8 238.8C238.1 247.8 240.1 258.1 247 265L282 300L215 367C205.6 376.4 205.6 391.6 215 400.9L239 424.9C248.4 434.3 263.6 434.3 272.9 424.9L339.9 357.9L374.9 392.9C381.8 399.8 392.1 401.8 401.1 398.1C410.1 394.4 416 385.7 416 376L416 248C416 234.7 405.3 224 392 224L264 224z"/></svg>
-      </svg>
+      <div style="transform: rotate(${heading}deg); transform-origin: 20px 52px; width: 40px; height: 52px;">
+        <svg width="40" height="52" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+          <!-- Pin -->
+          <path d="M50,0 C65,0 80,15 80,35 C80,60 50,110 50,110 C50,110 20,60 20,35 C20,15 35,0 50,0Z"
+                fill="${s.pin}" stroke="${s.stroke}" stroke-width="2"/>
+          <!-- White bg -->
+          <circle cx="50" cy="38" r="24" fill="white" opacity="0.95"/>
+          <!-- Car body -->
+          <rect x="36" y="30" width="28" height="16" rx="4" fill="${s.car}"/>
+          <!-- Roof -->
+          <rect x="40" y="24" width="20" height="10" rx="3" fill="${s.car}"/>
+          <!-- Windows -->
+          <rect x="41" y="26" width="8" height="6" rx="1" fill="white" opacity="0.5"/>
+          <rect x="51" y="26" width="8" height="6" rx="1" fill="white" opacity="0.5"/>
+          <!-- Wheels -->
+          <circle cx="41" cy="48" r="3" fill="#333"/>
+          <circle cx="59" cy="48" r="3" fill="#333"/>
+          <!-- Direction arrow -->
+          <polygon points="50,0 42,12 58,12" fill="${s.stroke}"/>
+          <!-- Status extras -->
+          ${s.extra}
+        </svg>
+      </div>
     `,
     })
 }
