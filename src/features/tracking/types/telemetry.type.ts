@@ -1,4 +1,4 @@
-export type VehicleStatus = 'no_signal' | 'in_transit' | 'operating'
+export type VehicleStatus = 'no_signal' | 'in_transit' | 'operating' | 'stationary'
 
 export interface Vehicle extends TelemetryResponse {
     status: VehicleStatus
@@ -16,4 +16,8 @@ export interface TelemetryResponse {
     sats: number
     hdop: number
     ignition: boolean
+    aspa_active: boolean
+    battery_voltage: number | null
+    battery_current_ma: number | null
+    alert: string | null
 }

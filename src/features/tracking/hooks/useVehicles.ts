@@ -7,8 +7,9 @@ const MAX_TRAIL = 50
 
 const getStatus = (data: TelemetryResponse): Vehicle['status'] => {
     if (!data.ignition) return 'no_signal'
+    if (data.aspa_active) return 'operating'
     if (data.speed > 0) return 'in_transit'
-    return 'operating'
+    return 'in_transit'
 }
 
 const toVehicle = (data: TelemetryResponse, existing?: Vehicle): Vehicle => {
@@ -62,7 +63,7 @@ export const useVehicles = (): Vehicle[] => {
             }
 
             ws.onclose = () => {
-                if (!cancelled) setTimeout(connect, 3000)
+                if (!cancelled) setTimeout(connect, 4500)
             }
         }
 
@@ -84,7 +85,7 @@ export const useVehicles = (): Vehicle[] => {
 
                 next.forEach((v, id) => {
                     const age = now - new Date(v.timestamp).getTime()
-                    if (age > 15000 && v.status !== 'no_signal') {
+                    if (age > 60000 && v.status !== 'no_signal') {
                         next.set(id, { ...v, status: 'no_signal' })
                         changed = true
                     }

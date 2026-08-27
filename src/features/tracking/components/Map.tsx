@@ -18,8 +18,8 @@ export const Map = ({ vehicles, selected }: Props) => {
     useEffect(() => {
         fetchVehicleHistory(
             'coex-gps-01',
-            '2026-08-09T00:00:00',
-            '2026-08-11T23:59:59'
+            '2026-08-19T00:00:00',
+            '2026-08-19T23:59:59'
         ).then((data) => {
             setHistory(data.map((d) => [d.lat, d.lon] as [number, number]))
         })
