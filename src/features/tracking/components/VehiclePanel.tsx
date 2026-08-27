@@ -9,12 +9,26 @@ const STATUS_LABEL: Record<VehicleStatus, string> = {
     no_signal: 'Sin señal',
     in_transit: 'En tránsito',
     operating: 'Operando en vía',
+    stationary: 'Parado',
 }
 
 const STATUS_COLOR: Record<VehicleStatus, string> = {
     no_signal: '#9CA3AF',
     in_transit: '#22C55E',
     operating: '#F59E0B',
+    stationary: '#3B82F6',
+}
+
+const getBatteryColor = (voltage: number | null | undefined): string => {
+    if (voltage == null) return '#9CA3AF'
+    if (voltage < 11.0) return '#EF4444'
+    if (voltage < 11.5) return '#F59E0B'
+    return '#22C55E'
+}
+
+const getBatteryLabel = (voltage: number | null | undefined): string => {
+    if (voltage == null) return 'Sin datos'
+    return `${voltage.toFixed(1)}V`
 }
 
 export const VehiclePanel = ({ vehicles, onSelect }: Props) => {
@@ -41,15 +55,37 @@ export const VehiclePanel = ({ vehicles, onSelect }: Props) => {
                         borderRadius: '8px',
                         cursor: 'pointer',
                         border: `2px solid ${STATUS_COLOR[v.status]}`,
+                        background: v.alert ? '#FEF2F2' : 'white',
                     }}
                 >
-                    <strong>{v.vehicle_id}</strong>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <strong>{v.vehicle_id}</strong>
+                        <span style={{
+                            fontSize: '12px',
+                            fontWeight: 'bold',
+                            color: getBatteryColor(v.battery_voltage),
+                        }}>
+                            🔋 {getBatteryLabel(v.battery_voltage)}
+                        </span>
+                    </div>
                     <div style={{ color: STATUS_COLOR[v.status], fontSize: '14px' }}>
                         {STATUS_LABEL[v.status]}
                     </div>
                     <div style={{ fontSize: '12px', color: '#666' }}>
-                        {v.speed} km/h
+                        {v.speed?.toFixed(0)} km/h · {v.sats} sats
                     </div>
+                    {v.alert && (
+                        <div style={{
+                            marginTop: '4px',
+                            fontSize: '12px',
+                            color: '#EF4444',
+                            fontWeight: 'bold',
+                        }}>
+                            ⚠️ {v.alert === 'bateria_critica_en_operacion'
+                                ? 'Batería crítica en operación'
+                                : 'Batería baja'}
+                        </div>
+                    )}
                 </div>
             ))}
         </div>

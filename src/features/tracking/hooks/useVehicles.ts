@@ -2,13 +2,14 @@ import { useState, useEffect, useRef } from 'react'
 import type { Vehicle, TelemetryResponse } from '../types/telemetry.type'
 import { fetchLatestPositions } from '../services/telemetry-api.service'
 
-const WS_URL = import.meta.env.WS_URL
+const WS_URL = import.meta.env.VITE_WS_URL
 const MAX_TRAIL = 50
 
 const getStatus = (data: TelemetryResponse): Vehicle['status'] => {
     if (!data.ignition) return 'no_signal'
+    if (data.aspa_active) return 'operating'
     if (data.speed > 0) return 'in_transit'
-    return 'operating'
+    return 'in_transit'
 }
 
 const toVehicle = (data: TelemetryResponse, existing?: Vehicle): Vehicle => {
@@ -34,9 +35,23 @@ export const useVehicles = (): Vehicle[] => {
 
     // WebSocket para actualizaciones
     useEffect(() => {
+        let cancelled = false
+
         const connect = () => {
+            if (cancelled) return
+
             const ws = new WebSocket(WS_URL)
             wsRef.current = ws
+
+            ws.onopen = () => {
+                const pingInterval = setInterval(() => {
+                    if (ws.readyState === WebSocket.OPEN) {
+                        ws.send('ping')
+                    } else {
+                        clearInterval(pingInterval)
+                    }
+                }, 10000)
+            }
 
             ws.onmessage = (event) => {
                 const data: TelemetryResponse = JSON.parse(event.data)
@@ -47,12 +62,20 @@ export const useVehicles = (): Vehicle[] => {
                 })
             }
 
-            ws.onclose = () => setTimeout(connect, 3000)
+            ws.onclose = () => {
+                if (!cancelled) setTimeout(connect, 4500)
+            }
         }
 
         connect()
-        return () => wsRef.current?.close()
+
+        return () => {
+            cancelled = true
+            wsRef.current?.close()
+        }
     }, [])
+
+    // Timeout detector
     useEffect(() => {
         const interval = setInterval(() => {
             setVehicles((prev) => {
@@ -62,7 +85,7 @@ export const useVehicles = (): Vehicle[] => {
 
                 next.forEach((v, id) => {
                     const age = now - new Date(v.timestamp).getTime()
-                    if (age > 15000 && v.status !== 'no_signal') {
+                    if (age > 60000 && v.status !== 'no_signal') {
                         next.set(id, { ...v, status: 'no_signal' })
                         changed = true
                     }
@@ -70,7 +93,7 @@ export const useVehicles = (): Vehicle[] => {
 
                 return changed ? next : prev
             })
-        }, 300)
+        }, 5000)
 
         return () => clearInterval(interval)
     }, [])
