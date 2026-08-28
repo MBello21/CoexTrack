@@ -1,12 +1,15 @@
 import { RouterProvider } from 'react-router'
 import { router } from './routes'
+import { SidebarProvider } from '../shared/layout/sidebar/context/SidebarContext'
 
 function App() {
 
 
   return (
     <>
-      <RouterProvider router={router} />
+      <SidebarProvider>
+        <RouterProvider router={router} />
+      </SidebarProvider>
     </>
   )
 }

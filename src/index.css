@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+    /* ── Fonts ──────────────────────────────────── */
+    --font-display: "Space Grotesk", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* ── Surface ────────────────────────────────── */
+    --color-surface: #0F1117;
+    --color-surface-raised: #161922;
+    --color-surface-overlay: #1C1F2B;
+    --color-surface-border: #2A2E3B;
+
+    /* ── Primary ────────────────────────────────── */
+    --color-primary-50: #EBF4FF;
+    --color-primary-100: #D6E8FF;
+    --color-primary-200: #ADCFFF;
+    --color-primary-300: #70ABFF;
+    --color-primary-400: #3B8AFA;
+    --color-primary-500: #1A6EF5;
+    --color-primary-600: #0D57D9;
+    --color-primary-700: #0A44AE;
+    --color-primary-800: #0C3685;
+    --color-primary-900: #0E2B66;
+
+    /* ── Amber (aspaflecha) ─────────────────────── */
+    --color-amber-50: #FFF9EB;
+    --color-amber-400: #FFB820;
+    --color-amber-500: #F5A623;
+    --color-amber-600: #D48A0C;
+    --color-amber-900: #5C3B10;
+
+    /* ── Status ─────────────────────────────────── */
+    --color-status-online: #34D399;
+    --color-status-idle: #FBBF24;
+    --color-status-offline: #6B7280;
+    --color-status-alert: #F43F5E;
+
+    /* ── Text ───────────────────────────────────── */
+    --color-text-primary: #F1F3F7;
+    --color-text-secondary: #9CA3B4;
+    --color-text-muted: #5C6478;
+    --color-text-inverse: #0F1117;
+
+    /* ── Radius ─────────────────────────────────── */
+    --radius-card: 0.625rem;
+    --radius-btn: 0.5rem;
+    --radius-badge: 0.25rem;
+
+    /* ── Shadows ────────────────────────────────── */
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 12px rgba(26, 110, 245, 0.3);
+
+    /* ── Animation ──────────────────────────────── */
+    --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+    --animate-fade-in: fade-in 0.2s ease-out;
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.8);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

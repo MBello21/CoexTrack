@@ -10,7 +10,7 @@ export const TrackingPage = () => {
     const [selected, setSelected] = useState<Vehicle | null>(null)
     const vehicles = useVehicles()
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', zIndex: 0 }}>
             <VehiclePanel vehicles={vehicles} onSelect={setSelected} />
             <Map vehicles={vehicles} selected={selected} />
         </div>
