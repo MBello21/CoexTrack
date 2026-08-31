@@ -1,20 +1,8 @@
 import { Marker, Popup, Polyline } from 'react-leaflet'
 import type { Vehicle, VehicleStatus } from '../types/telemetry.type'
 import { createVehicleIcon } from './VehicleIcon'
+import { STATUS_COLOR, STATUS_LABEL } from '../../../shared/constants/vehicles-variables.constant'
 
-const STATUS_COLOR: Record<VehicleStatus, string> = {
-    no_signal: '#9CA3AF',
-    in_transit: '#22C55E',
-    operating: '#F59E0B',
-    stationary: '#3B82F6',
-}
-
-const STATUS_LABEL: Record<VehicleStatus, string> = {
-    no_signal: 'Sin señal',
-    in_transit: 'En tránsito',
-    operating: 'Operando en vía',
-    stationary: 'Parado',
-}
 
 interface Props {
     vehicle: Vehicle
