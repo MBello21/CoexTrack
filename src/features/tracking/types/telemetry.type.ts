@@ -31,4 +31,5 @@ export interface TelemetryResponse {
   vehicle_type: string | null;
   driver: string | null;
   engine_type: string | null;
+  last_address: string;
 }
