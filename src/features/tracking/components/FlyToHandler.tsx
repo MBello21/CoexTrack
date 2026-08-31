@@ -1,11 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useMap } from 'react-leaflet'
-
-interface FlyToProps {
-    lat: number
-    lng: number
-    vehicleId: string
-}
+import type { FlyToProps } from '../types/fly-to-hander.type'
 
 export const FlyToHandler = ({ lat, lng, vehicleId }: FlyToProps) => {
     const map = useMap()

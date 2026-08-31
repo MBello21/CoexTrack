@@ -11,6 +11,7 @@ import { FlyToHandler } from "./FlyToHandler";
 import { fetchVehicleHistory } from "../services/telemetry-api.service";
 import type { Vehicle } from "../types/telemetry.type";
 import "leaflet/dist/leaflet.css";
+import { ResizeHandler } from "../../../shared/components/ResizeHandler";
 
 interface Props {
   vehicles: Vehicle[];
@@ -37,6 +38,7 @@ export const Map = ({ vehicles, selected }: Props) => {
       zoom={MAP_ZOOM}
       style={{ height: "100vh", width: "100%" }}
     >
+      <ResizeHandler />
       <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />
       {vehicles
         .filter((v) => v.lat != null && v.lon != null)
