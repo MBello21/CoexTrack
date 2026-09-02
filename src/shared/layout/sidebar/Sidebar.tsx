@@ -7,9 +7,9 @@ export const Sidebar = () => {
 
 
     return (
-        <aside className="flex flex-col justify-between h-screen text-white p-2 z-40 relative">
+        <aside className="flex flex-col h-full justify-between text-white p-2 z-40 relative">
             <SidebarHeader />
-            <div className='h-full items-start'>
+            <div className='flex-1 overflow-y-auto'>
                 <SidebarBody />
             </div>
             <SidebarFooter />

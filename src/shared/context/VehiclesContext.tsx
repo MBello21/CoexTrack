@@ -4,9 +4,9 @@ import { fetchLatestPositions } from "../../features/tracking/services/telemetry
 
 const VehicleContext = createContext<Vehicle[] | null>(null!)
 
+
 const WS_URL = import.meta.env.VITE_WS_URL;
 const MAX_TRAIL = 50;
-
 const getStatus = (data: TelemetryResponse): Vehicle["status"] => {
     if (data.timestamp == null || data.sats == null || data.sats === 0)
         return "no_signal";
@@ -27,8 +27,9 @@ const toVehicle = (data: TelemetryResponse, existing?: Vehicle): Vehicle => {
             ? [[data.lat, data.lon] as [number, number]]
             : [];
 
-    return { ...data, status: getStatus(data), trail };
+    return { ...existing, ...data, status: getStatus(data), trail };
 };
+
 export const VehicleProvider = ({ children }: { children: ReactNode }) => {
 
 

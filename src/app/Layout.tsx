@@ -7,7 +7,7 @@ export const Layout = () => {
     const { open } = useSidebar();
     return (
         <div className='flex h-screen'>
-            <div className={`transition-all duration-300 ease-in-out ${open ? 'w-70 md:w-60' : 'w-18'} bg-surface`}>
+            <div className={`transition-all duration-300 ease-in-out ${open ? 'w-70 md:w-60' : 'w-18'} bg-surface h-full`}>
                 <Sidebar />
             </div>
             <div className={`transition-all duration-300 ease-in-out flex-1 h-full overflow-hidden`}>

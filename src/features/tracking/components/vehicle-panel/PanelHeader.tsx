@@ -1,4 +1,5 @@
-import { CustomDropdown } from "../../../../shared/components/CustomDropdown";
+import { CustomDropdown } from "../../../../shared/components/ui/CustomDropdown";
+
 
 export const PanelHeader = () => {
   return (
