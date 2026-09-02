@@ -7,6 +7,7 @@
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
     /* ── Surface ────────────────────────────────── */
+    --color-white: #FFFFFF;
     --color-surface: #0F1117;
     --color-surface-raised: #161922;
     --color-surface-overlay: #1C1F2B;

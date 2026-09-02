@@ -1,6 +1,7 @@
 import type { PopupTCUProps } from "../../types/vehicle-popup.type"
-import { BatteryIcon } from "../../../../shared/components/BatteryIcon"
+
 import { getBatteryPercent } from "../../../../shared/helpers/get-batery-percent"
+import { BatteryIcon } from "../../../../shared/components/ui/BatteryIcon"
 
 
 export const PopupTCU = ({ battery_voltage }: PopupTCUProps) => {

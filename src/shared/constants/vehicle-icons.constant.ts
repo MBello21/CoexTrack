@@ -1,16 +1,9 @@
-import type { SVGProps } from "react";
-import {
-  IconCar,
-  IconFlatbed,
-  IconTruck,
-  IconVan,
-  IconVanLarge,
-} from "./svg-vehicles.constants";
+import { mdiCarSide, mdiVanUtility, mdiCarEstate, mdiTruckFlatbed, mdiTowTruck } from "@mdi/js";
 
-export const VEHICLE_ICON: Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
-  Furgón: IconVanLarge,
-  Furgoneta: IconVan,
-  Turismo: IconCar,
-  "Caja abierta": IconFlatbed,
-  Camión: IconTruck,
+export const VEHICLE_ICON: Record<string, string> = {
+  "Turismo": mdiCarSide,
+  "Furgoneta": mdiVanUtility,
+  "Furgón": mdiCarEstate,
+  "Caja abierta": mdiTruckFlatbed,
+  "Camión": mdiTowTruck,
 };
