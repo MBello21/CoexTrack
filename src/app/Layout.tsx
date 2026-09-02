@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router'
 import { Sidebar } from '../shared/layout/sidebar/Sidebar'
 import { useSidebar } from '../shared/layout/sidebar/context/SidebarContext';
+import { VehicleProvider } from '../shared/context/VehiclesContext';
 
 export const Layout = () => {
     const { open } = useSidebar();
@@ -10,7 +11,9 @@ export const Layout = () => {
                 <Sidebar />
             </div>
             <div className={`transition-all duration-300 ease-in-out flex-1 h-full overflow-hidden`}>
-                <Outlet />
+                <VehicleProvider>
+                    <Outlet />
+                </VehicleProvider>
             </div>
         </div>
     )
