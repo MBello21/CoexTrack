@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Map } from "./components/Map";
 import { VehiclePanel } from "./components/vehicle-panel/VehiclePanel";
-// import { MOCK_VEHICLES } from './mock/vehicles-position.mock'
 import type { Vehicle } from "./types/telemetry.type";
-// import { useSimulatedVehicles } from './hooks/useSimulatedVehicles'
-import { useVehicles } from "./hooks/useVehicles";
+import { useVehicleContext } from "../../shared/context/VehiclesContext";
 
 export const TrackingPage = () => {
   const [selected, setSelected] = useState<Vehicle | null>(null);
-  const vehicles = useVehicles();
+  const vehicles = useVehicleContext();
   return (
     <div style={{ position: "relative", zIndex: 0 }}>
       <VehiclePanel vehicles={vehicles} onSelect={setSelected} />
