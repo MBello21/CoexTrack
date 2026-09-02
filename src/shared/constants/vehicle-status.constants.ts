@@ -4,10 +4,10 @@ import type { StateConfigProps } from "../types/badge-state.interface";
 export const VEHICLE_STATUS: Record<string, StateConfigProps> = {
     no_signal: {
         label: "Sin señal",
-        bg: 'bg-red-100',
+        bg: 'bg-neutral-100',
         bg_icon: 'bg-neutral-500',
-        text: 'text-red-600',
-        dot: 'bg-red-600'
+        text: 'text-neutral-600',
+        dot: 'bg-neutral-600'
     },
     ignition_off: {
         label: "Ignición off",
