@@ -28,7 +28,7 @@ export const VehicleMarker = ({ vehicle }: Props) => {
         icon={createVehicleIcon(vehicle.status)}
       >
         <Popup>
-          <strong>{vehicle.vehicle_id}</strong>
+          <strong>{vehicle.device_id}</strong>
           <br />
           {STATUS_LABEL[vehicle.status]}
           <br />

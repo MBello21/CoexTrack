@@ -13,7 +13,7 @@ export const PanelVehicles = ({
       {vehicles.map((v) => {
         return (
           <VehicleCard
-            key={v.vehicle_id}
+            key={v.device_id}
             v={v}
             onSelect={onSelect}
             setPopup={setPopup}

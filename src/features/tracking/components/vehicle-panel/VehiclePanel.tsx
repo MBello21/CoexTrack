@@ -30,7 +30,7 @@ export const VehiclePanel = ({ vehicles, onSelect }: Props) => {
       />
       {popup &&
         (() => {
-          const v = vehicles.find((x) => x.vehicle_id === popup);
+          const v = vehicles.find((x) => x.device_id === popup);
           if (!v) return null;
           return (
             <VehiclePopup

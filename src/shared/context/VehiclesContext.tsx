@@ -41,7 +41,7 @@ export const VehicleProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         fetchLatestPositions().then((data) => {
             const map = new Map<string, Vehicle>();
-            data.forEach((d) => map.set(d.vehicle_id, toVehicle(d)));
+            data.forEach((d) => map.set(d.device_id, toVehicle(d)));
             setVehicles(map);
         });
     }, []);
@@ -70,7 +70,7 @@ export const VehicleProvider = ({ children }: { children: ReactNode }) => {
                 const data: TelemetryResponse = JSON.parse(event.data);
                 setVehicles((prev) => {
                     const next = new Map(prev);
-                    next.set(data.vehicle_id, toVehicle(data, prev.get(data.vehicle_id)));
+                    next.set(data.device_id, toVehicle(data, prev.get(data.device_id)));
                     return next;
                 });
             };

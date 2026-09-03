@@ -13,7 +13,7 @@ export const VehicleCard = ({
 
   return (
     <div
-      key={v.vehicle_id}
+      key={v.device_id}
       onClick={() => {
         onSelect(v);
       }}
@@ -21,7 +21,7 @@ export const VehicleCard = ({
         e.stopPropagation();
         const rect = e.currentTarget.getBoundingClientRect();
         setPopupTop(rect.top);
-        setPopup(popup === v.vehicle_id ? null : v.vehicle_id);
+        setPopup(popup === v.device_id ? null : v.device_id);
       }}
       onMouseLeave={() => {
         setPopup(null);
@@ -37,7 +37,7 @@ export const VehicleCard = ({
         <VehicleIcon vehicle_type={v.vehicle_type ?? 'Turismo'} state={v.status} />
         <div>
           <p className="uppercase font-semibold text-xs font-body">
-            {v.vehicle_id}
+            {v.device_id}
           </p>
           <p className="uppercase font-medium font- text-md">{v.plate}</p>
         </div>

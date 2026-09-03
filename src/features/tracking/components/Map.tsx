@@ -43,13 +43,13 @@ export const Map = ({ vehicles, selected }: Props) => {
       {vehicles
         .filter((v) => v.lat != null && v.lon != null)
         .map((v) => (
-          <VehicleMarker key={v.vehicle_id} vehicle={v} />
+          <VehicleMarker key={v.device_id} vehicle={v} />
         ))}
       {selected && selected.lat != null && selected.lon != null && (
         <FlyToHandler
           lat={selected.lat}
           lng={selected.lon}
-          vehicleId={selected.vehicle_id}
+          vehicleId={selected.device_id}
         />
       )}
       {history.length > 1 && (

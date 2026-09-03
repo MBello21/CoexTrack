@@ -1,22 +1,11 @@
 import { ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCustomDropdown } from "../../hooks/useCustomDropdown";
+import { CUSTOM_DROPDOWN_OPTIONS } from "../../constants/custom-dropdown.constant";
 
 
 export const CustomDropdown = () => {
-    const [dropOpen, setDropOpen] = useState(false);
-    const [filter, setFilter] = useState({ label: "Flota", value: "flota" });
+    const { filter, setFilter, dropOpen, setDropOpen } = useCustomDropdown();
 
-    useEffect(() => {
-        if (!dropOpen) return;
-        const close = () => setDropOpen(false);
-        document.addEventListener("click", close);
-        return () => document.removeEventListener("click", close);
-    }, [dropOpen]);
-
-    const options = [
-        { label: "Flota", value: "flota", full: "Búsqueda de flota" },
-        { label: "Vehículo", value: "vehiculo", full: "Búsqueda de vehículo" },
-    ];
     return (
         <div className="absolute right-2 top-1/2 -translate-y-1/2">
             <button
@@ -27,8 +16,8 @@ export const CustomDropdown = () => {
                 <ChevronDown className="w-4 h-4" />
             </button>
             {dropOpen && (
-                <div className="absolute -left-32 top-full mt-1 bg-white shadow-card  rounded-card p-1 z-50 w-50">
-                    {options.map((opt) => (
+                <div className="absolute -left-32 top-full mt-2 bg-white shadow-card  rounded-card p-1 z-50 w-50">
+                    {CUSTOM_DROPDOWN_OPTIONS.map((opt) => (
                         <button
                             key={opt.value}
                             onClick={() => { setFilter(opt); setDropOpen(false); }}
