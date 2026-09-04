@@ -11,7 +11,7 @@ export interface Vehicle extends TelemetryResponse {
 }
 
 export interface TelemetryResponse {
-  vehicle_id: string;
+  device_id: string;
   timestamp: string;
   lat: number;
   lon: number;
