@@ -21,7 +21,7 @@ export const VehiclesPage = () => {
   }
   const handleClickPrev = () => {
     if (page === total) return
-    setPage((prev) => prev + 1)
+    setPage((prev) => prev - 1)
   }
 
 
