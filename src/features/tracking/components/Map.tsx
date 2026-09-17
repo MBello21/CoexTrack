@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Polyline } from "react-leaflet";
+import { MapContainer, TileLayer, Polyline, LayersControl } from "react-leaflet";
 import { useState, useEffect } from "react";
 import {
   MAP_CENTER,
@@ -39,7 +39,17 @@ export const Map = ({ vehicles, selected }: Props) => {
       style={{ height: "100vh", width: "100%" }}
     >
       <ResizeHandler />
-      <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />
+      <LayersControl position="topright">
+        <LayersControl.BaseLayer checked name="Callejero">
+          <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Satélite">
+          <TileLayer
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            attribution="&copy; Esri"
+          />
+        </LayersControl.BaseLayer>
+      </LayersControl>
       {vehicles
         .filter((v) => v.lat != null && v.lon != null)
         .map((v) => (
