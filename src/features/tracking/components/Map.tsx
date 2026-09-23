@@ -31,6 +31,8 @@ export const Map = ({ vehicles, selected }: Props) => {
     });
   }, []);
 
+ 
+
   return (
     <MapContainer
       zoomControl={false}

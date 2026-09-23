@@ -32,7 +32,7 @@ export const SidebarExpanded = ({ isActive, pathname }: SidebarExpendedProps) =>
                 {NAVIGATION.map((item) => {
                     const Icon = item.icon;
                     const isOpen = expanded.has(item.label);
-                    const btnClass = `flex gap-2 w-full rounded-sm mb-1 px-2 py-1 ${isActive(item) && !isOpen ? "bg-neutral-700" : ""}`;
+                    const btnClass = `flex gap-2 w-full rounded-sm mb-1 px-2 py-1 ${isActive(item) && !isOpen ? "bg-neutral-700" : ""} hover:bg-neutral-700`;
                     return (
                         <li key={item.label} className="relative">
                             <button
@@ -53,7 +53,7 @@ export const SidebarExpanded = ({ isActive, pathname }: SidebarExpendedProps) =>
                             <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                                 <ul className="rounded-sm ms-4 me-4 overflow-hidden">
                                     {item.children.map((child) => (
-                                        <li className={`${child.path === pathname ? "bg-neutral-700" : ""} px-2 py-1 rounded-sm`}
+                                        <li className={`${child.path === pathname ? "bg-neutral-700" : ""} px-2 py-1 my-1 rounded-sm hover:bg-neutral-700`}
                                             key={child.path}>
                                             <Link to={child.path}>{child.label}</Link>
                                         </li>

@@ -8,6 +8,7 @@ import { Layout } from "./Layout";
 import { NotFound } from "./NotFound";
 import { TrackingPage } from "../features/tracking/TrackingPage";
 import { VehiclesPage } from "../features/vehicles/VehiclesPage";
+import { Geofences } from "../features/geofence/Geofences";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ export const router = createBrowserRouter(
         <Route index element={<Navigate to="/map/fleet" replace />} />
         <Route path="map/fleet" element={<TrackingPage />} />
         <Route path="/list/vehicles" element={<VehiclesPage />} />
+        <Route path="/list/geofences" element={<Geofences/>}/>
       </Route>
     </>,
   ),
