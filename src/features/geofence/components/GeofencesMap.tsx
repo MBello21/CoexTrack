@@ -8,21 +8,14 @@ import {
 } from "../../../shared/constants/map";
 
 import { ResizeHandler } from "../../../shared/components/ResizeHandler";
-import { DrawControl, DrawToolbar } from "./DrawControl";
+import { DrawControl } from "./DrawControl";
 
 
 export const GeofencesMap = () => {
     //   const [history, setHistory] = useState<[number, number][]>([]);
-     const handleCreate = async () => {
-    // const name = window.prompt("Nombre de la geovalla");
-    // if (!name) return;
-    // const res = await fetch("/api/geofences", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ name, geometry }),
-    // });
-    // if (res.ok) await loadFences(); // tu función que hace el GET y actualiza el estado
-  };
+    const handleCreate = async (e: any) => {
+        console.log(e.layer.getLatLngs()[0])
+    };
 
 
 
@@ -37,7 +30,6 @@ export const GeofencesMap = () => {
         >
             <ResizeHandler />
             <DrawControl onCreate={handleCreate} />
-            <DrawToolbar onCreate={handleCreate} />
             <LayersControl position="topright">
                 <LayersControl.BaseLayer checked name="Callejero">
                     <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />

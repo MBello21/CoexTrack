@@ -72,7 +72,7 @@ Backend (GPS devices)
 
 #### Tareas
 1. **Capas de Mapa**
-   - [ ] Agregar OpenerStreetMap (actual)
+   - [X] Agregar OpenerStreetMap (actual)
    - [ ] Agregar Satellite layer
    - [ ] Agregar Dark mode layer
    - [ ] Selector visual de capas (LayersControl)
