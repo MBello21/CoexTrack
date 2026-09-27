@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Polyline, LayersControl } from "react-leaflet";
+import { MapContainer, TileLayer, Polyline, LayersControl, LayerGroup, Circle, Polygon } from "react-leaflet";
 import { useState, useEffect } from "react";
 import {
   MAP_CENTER,
@@ -8,10 +8,11 @@ import {
 } from "../../../shared/constants/map";
 import { VehicleMarker } from "./VehicleMarker";
 import { FlyToHandler } from "./FlyToHandler";
-import { fetchVehicleHistory } from "../services/telemetry-api.service";
+import { fetchVehicleHistory, getGeofences } from "../services/telemetry-api.service";
 import type { Vehicle } from "../types/telemetry.type";
 import "leaflet/dist/leaflet.css";
 import { ResizeHandler } from "../../../shared/components/ResizeHandler";
+import type { GeofencesResponse } from "../types/geofence.type";
 
 interface Props {
   vehicles: Vehicle[];
@@ -20,6 +21,7 @@ interface Props {
 
 export const Map = ({ vehicles, selected }: Props) => {
   const [history, setHistory] = useState<[number, number][]>([]);
+  const [geofence, setGeofence] = useState<GeofencesResponse[]>([])
 
   useEffect(() => {
     fetchVehicleHistory(
@@ -31,7 +33,20 @@ export const Map = ({ vehicles, selected }: Props) => {
     });
   }, []);
 
- 
+  useEffect(() => {
+    getGeofences().then((data) => {
+      setGeofence(data);
+    })
+  }, [])
+
+  const parseWKT = (geometry: string) => {
+    geometry = geometry.replace("POLYGON ((", "").replace("))", "")
+    const points = geometry.split(", ")
+    const invert = points.map(p => p.split(" ")).map(([lng, lat]) => [parseFloat(lat), parseFloat(lng)] as [number, number])
+    return invert
+  }
+  console.log(geofence)
+
 
   return (
     <MapContainer
@@ -51,6 +66,15 @@ export const Map = ({ vehicles, selected }: Props) => {
             attribution="&copy; Esri"
           />
         </LayersControl.BaseLayer>
+        <LayersControl.Overlay checked name="Layer group with circles">
+          <LayerGroup>
+            {
+              geofence.map(g => (
+                <Polygon key={g.id} positions={parseWKT(g.geometry)} />
+              ))
+            }
+          </LayerGroup>
+        </LayersControl.Overlay>
       </LayersControl>
       {vehicles
         .filter((v) => v.lat != null && v.lon != null)

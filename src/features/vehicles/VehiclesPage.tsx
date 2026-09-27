@@ -31,7 +31,10 @@ export const VehiclesPage = () => {
 
   return (
     <section className="bg-neutral-300 h-full p-4 font-body text-xs">
-      <SectionHeader />
+      <SectionHeader
+        title="Vehículos"
+        subtitle="Vehículos registrados"
+      />
       <div className="border border-gray-300 bg-white rounded-lg mt-5 shadow-md overflow-hidden">
         <VehiclesToolbar
           vehicles={vehicles}
