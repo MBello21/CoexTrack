@@ -1,5 +1,5 @@
 import L from 'leaflet'
-import type { VehicleStatus } from '../types/telemetry.type'
+import type { VehicleStatus } from '../interfaces/telemetry.type'
 import { STATUS_COLOR } from '../../../shared/constants/vehicles-variables.constant'
 
 

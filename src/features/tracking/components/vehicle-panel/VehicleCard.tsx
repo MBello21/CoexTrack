@@ -1,7 +1,7 @@
 import { VehicleIcon } from "../../../../shared/components/ui/VehicleIcon";
 
 
-import type { VehiclesCardProps } from "../../types/vehicle-panel.types";
+import type { VehiclesCardProps } from "../../interfaces/vehicle-panel.types";
 
 export const VehicleCard = ({
   onSelect,

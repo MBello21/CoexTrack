@@ -1,4 +1,4 @@
-import type { PopupSpeedProps } from "../../types/vehicle-popup.type"
+import type { PopupSpeedProps } from "../../interfaces/vehicle-popup.type"
 
 
 export const PopupSpeed = ({ speed }: PopupSpeedProps) => {

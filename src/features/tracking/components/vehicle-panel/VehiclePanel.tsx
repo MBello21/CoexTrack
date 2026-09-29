@@ -1,4 +1,4 @@
-import type { Vehicle } from "../../types/telemetry.type";
+import type { Vehicle } from "../../interfaces/telemetry.type";
 import { VehiclePopup } from "../vehicle-popup/VehiclePopup";
 import { useVehiclePanel } from "../../hooks/useVehiclePanel";
 import { PanelHeader } from "./PanelHeader";

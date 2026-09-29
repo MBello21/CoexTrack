@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Map } from "./components/Map";
+import { Map } from "./components/map/Map";
 import { VehiclePanel } from "./components/vehicle-panel/VehiclePanel";
-import type { Vehicle } from "./types/telemetry.type";
+import type { Vehicle } from "./interfaces/telemetry.type";
 import { useVehicleContext } from "../../shared/context/VehiclesContext";
 
 export const TrackingPage = () => {

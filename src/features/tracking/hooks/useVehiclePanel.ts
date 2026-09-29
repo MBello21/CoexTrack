@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Vehicle } from "../types/telemetry.type";
+import type { Vehicle } from "../interfaces/telemetry.type";
 
 interface Props {
     vehicles: Vehicle[]

@@ -1,4 +1,4 @@
-import type { PopupTCUProps } from "../../types/vehicle-popup.type"
+import type { PopupTCUProps } from "../../interfaces/vehicle-popup.type"
 
 import { getBatteryPercent } from "../../../../shared/helpers/get-batery-percent"
 import { BatteryIcon } from "../../../../shared/components/ui/BatteryIcon"

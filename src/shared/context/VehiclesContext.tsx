@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react"
-import type { TelemetryResponse, Vehicle } from "../../features/tracking/types/telemetry.type"
+import type { TelemetryResponse, Vehicle } from "../../features/tracking/interfaces/telemetry.type"
 import { fetchLatestPositions } from "../../features/tracking/services/telemetry-api.service";
 
 const VehicleContext = createContext<Vehicle[] | null>(null!)

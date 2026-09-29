@@ -1,5 +1,5 @@
 import { VEHICLE_STATUS } from "../../constants/vehicle-status.constants";
-import type { BadgeStateProps } from "../../types/badge-state.interface";
+import type { BadgeStateProps } from "../../interfaces/badge-state.interface";
 
 export const BadgeStatus: React.FC<BadgeStateProps> = ({ state }) => {
   const config = VEHICLE_STATUS[state] ?? VEHICLE_STATUS["no_signal"];

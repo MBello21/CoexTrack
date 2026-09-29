@@ -1,4 +1,4 @@
-import type { Vehicle } from "../../types/telemetry.type";
+import type { Vehicle } from "../../interfaces/telemetry.type";
 import { useSidebar } from "../../../../shared/layout/sidebar/context/SidebarContext";
 import { PopupHeader } from "./PopupHeader";
 import { PopupDriverLocation } from "./PopupDriverLocation";

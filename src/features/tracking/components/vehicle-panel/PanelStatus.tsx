@@ -1,4 +1,4 @@
-import type { PanelStatusProps } from "../../types/vehicle-panel.types";
+import type { PanelStatusProps } from "../../interfaces/vehicle-panel.types";
 
 export const PanelStatus = ({ total, visible, noSignal }: PanelStatusProps) => {
   return (

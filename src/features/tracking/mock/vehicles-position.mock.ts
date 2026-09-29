@@ -1,4 +1,4 @@
-import type { Vehicle } from "../types/telemetry.type";
+import type { Vehicle } from "../interfaces/telemetry.type";
 
 export const MOCK_VEHICLES: Vehicle[] = [
     {

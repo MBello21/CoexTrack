@@ -1,4 +1,4 @@
-import type { VehicleStatus } from "../../features/tracking/types/telemetry.type";
+import type { VehicleStatus } from "../../features/tracking/interfaces/telemetry.type";
 
 export const STATUS_LABEL: Record<VehicleStatus, string> = {
   no_signal: "Sin señal",

@@ -1,4 +1,4 @@
-import type { PopupEngineProps } from "../../types/vehicle-popup.type"
+import type { PopupEngineProps } from "../../interfaces/vehicle-popup.type"
 
 
 export const PopupEngine = ({ engine_type, battery_voltage }: PopupEngineProps) => {
