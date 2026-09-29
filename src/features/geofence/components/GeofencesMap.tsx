@@ -1,15 +1,15 @@
-import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
+import { MapContainer} from "react-leaflet";
 
 import {
     MAP_CENTER,
     MAP_ZOOM,
-    TILE_URL,
-    TILE_ATTRIBUTION,
 } from "../../../shared/constants/map";
 
 import { ResizeHandler } from "../../../shared/components/ResizeHandler";
 import { DrawControl } from "./DrawControl";
-
+import { BaseMap } from "../../../shared/components/BaseMap";
+import { useState } from "react";
+export type MapLayer = "street" |"satellite" | "hybrid"
 
 export const GeofencesMap = () => {
     //   const [history, setHistory] = useState<[number, number][]>([]);
@@ -18,7 +18,7 @@ export const GeofencesMap = () => {
     };
 
 
-
+const [layer, setLayer] = useState<MapLayer>("street")
 
 
     return (
@@ -26,22 +26,11 @@ export const GeofencesMap = () => {
             zoomControl={false}
             center={MAP_CENTER}
             zoom={MAP_ZOOM}
-            style={{ height: "100vh", width: "70%" }}
+            style={{ height: "100%", width: "70%", position: "relative"}}
         >
             <ResizeHandler />
             <DrawControl onCreate={handleCreate} />
-            <LayersControl position="topright">
-                <LayersControl.BaseLayer checked name="Callejero">
-                    <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} />
-                </LayersControl.BaseLayer>
-                <LayersControl.BaseLayer name="Satélite">
-                    <TileLayer
-                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                        attribution="&copy; Esri"
-                    />
-                </LayersControl.BaseLayer>
-            </LayersControl>
-
+            <BaseMap layer={layer} setLayer={setLayer}/>
         </MapContainer>
     );
 };

@@ -1,5 +1,5 @@
 import { Marker, Popup, Polyline } from "react-leaflet";
-import type { Vehicle } from "../types/telemetry.type";
+import type { Vehicle } from "../interfaces/telemetry.type";
 import { createVehicleIcon } from "./VehicleIcon";
 import {
   STATUS_COLOR,

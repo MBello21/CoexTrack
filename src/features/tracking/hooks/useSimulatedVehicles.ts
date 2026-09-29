@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { MOCK_VEHICLES } from '../mock/vehicles-position.mock'
-import type { Vehicle } from '../types/telemetry.type'
+import type { Vehicle } from '../interfaces/telemetry.type'
 
 const MAX_TRAIL = 50
 

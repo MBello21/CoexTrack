@@ -1,4 +1,4 @@
-import type { PopupLocDriverProps } from "../../types/vehicle-popup.type"
+import type { PopupLocDriverProps } from "../../interfaces/vehicle-popup.type"
 import { User } from "lucide-react"
 
 export const PopupDriverLocation = ({ driver, last_address }: PopupLocDriverProps) => {

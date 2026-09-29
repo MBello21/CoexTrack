@@ -22,7 +22,7 @@ import {
   type FilterFn,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
-import type { Vehicle } from '../../tracking/types/telemetry.type';
+import type { Vehicle } from '../../tracking/interfaces/telemetry.type';
 import type { VehicleFilterStatus } from '../types/table.types';
 
 // Features declaradas explícitamente (API v9). Los row models se registran

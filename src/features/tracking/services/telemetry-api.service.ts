@@ -1,6 +1,5 @@
-import type { GeofencesResponse } from "../types/geofence.type";
-import type { TelemetryResponse } from "../types/telemetry.type";
-
+import type { GeofencesResponse } from "../../geofence/interfaces/geofence.type";
+import type { TelemetryResponse } from "../interfaces/telemetry.type";
 const API_URL = `${import.meta.env.VITE_API_URL}`;
 
 export const fetchLatestPositions = async (): Promise<TelemetryResponse[]> => {

@@ -1,4 +1,4 @@
-import type { Vehicle } from "../../tracking/types/telemetry.type";
+import type { Vehicle } from "../../tracking/interfaces/telemetry.type";
 import type { VehicleFilterStatus } from "../types/table.types";
 import { ColumnManager } from "./ColumnManager";
 

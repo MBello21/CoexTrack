@@ -1,4 +1,4 @@
-import type { StateConfigProps } from "../types/badge-state.interface";
+import type { StateConfigProps } from "../interfaces/badge-state.interface";
 
 
 export const VEHICLE_STATUS: Record<string, StateConfigProps> = {

@@ -1,4 +1,4 @@
-import type { PanelVehiclesProps } from "../../types/vehicle-panel.types";
+import type { PanelVehiclesProps } from "../../interfaces/vehicle-panel.types";
 import { VehicleCard } from "./VehicleCard";
 
 export const PanelVehicles = ({

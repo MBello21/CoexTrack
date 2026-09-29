@@ -1,4 +1,4 @@
-import type { PopupHeaderProps } from "../../types/vehicle-popup.type"
+import type { PopupHeaderProps } from "../../interfaces/vehicle-popup.type"
 import { Settings } from "lucide-react"
 import { formatDateTime } from "../../../../shared/helpers/format-date-time.helper"
 import { BadgeStatus } from "../../../../shared/components/ui/BadgeStatus"
